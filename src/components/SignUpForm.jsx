@@ -7,7 +7,7 @@ import LinkMUI from '@mui/material/Link';
 
 const SingUpForm = (props) => {
 
-    const handleSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault()
         props.registration()
     }
@@ -23,7 +23,7 @@ const SingUpForm = (props) => {
                     <Typography gutterBottom variant='h4'>Create an account</Typography>
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={onSubmit}>
                         <Box sx={{
                             display: 'flex',
                             alignItems: 'center',

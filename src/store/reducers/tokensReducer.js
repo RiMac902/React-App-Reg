@@ -1,29 +1,24 @@
-import {SET_EMAIL, SET_PASSWORD, SET_USERNAME} from "../actions/registrationActions";
+import {SET_ACCESS_TOKEN, SET_REFRESH_TOKEN} from "../actions/tokensAction";
+
 
 const initialState = {
-    email: '',
-    password: '',
-    username: '',
+    access_token: null,
+    refresh_token: null,
 }
 
 
-export const registrationReducer = (state = initialState, action) => {
+export const tokensReducer  = (state = initialState, action) => {
     switch (action.type) {
-        case SET_EMAIL:
+        case SET_ACCESS_TOKEN:
             return {
                 ...state,
-                email: action.payload
+                access_token: action.payload
             }
 
-        case SET_PASSWORD:
+        case SET_REFRESH_TOKEN:
             return {
                 ...state,
-                password: action.payload
-            }
-        case SET_USERNAME:
-            return {
-                ...state,
-                username: action.payload
+                refresh_token: action.payload
             }
         default:
             return state

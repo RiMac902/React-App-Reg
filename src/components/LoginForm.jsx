@@ -7,10 +7,11 @@ import LinkMUI from "@mui/material/Link";
 
 const LoginForm = (props) => {
 
-    const handleSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault()
         props.login()
     }
+    
 
     return (
         <Box display="flex"
@@ -23,7 +24,7 @@ const LoginForm = (props) => {
                     <Typography gutterBottom variant="h4">Welcome back</Typography>
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={onSubmit}>
                         <Box sx={{
                             display: 'flex',
                             alignItems: 'center',
