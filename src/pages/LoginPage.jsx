@@ -1,15 +1,23 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {registration, setEmail, setPassword, setUsername} from "../store/actions/registrationActions";
+import {login, setEmail, setPassword} from "../store/actions/loginActions";
 import {Link as RouterLink} from "react-router-dom";
 import {Box, Button, Card, TextField, Typography} from "@mui/material";
-import LinkMUI from '@mui/material/Link';
+import LinkMUI from "@mui/material/Link";
+import { useNavigate } from "react-router-dom";
 
-const SingUpForm = (props) => {
+const LoginPage = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        props.registration()
+        props.login(navigateToProjects)
+
+    }
+
+    const navigate = useNavigate()
+
+    const navigateToProjects = () => {
+        navigate('/projects')
     }
 
     return (
@@ -18,9 +26,9 @@ const SingUpForm = (props) => {
              alignItems="center"
              minHeight="100vh"
              flexDirection='column'>
-            <Card variant='outlined' sx={{padding: 5}}>
+            <Card variant='outlined' sx={{padding: 5, borderRadius: 5}}>
                 <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                    <Typography gutterBottom variant='h4'>Create an account</Typography>
+                    <Typography gutterBottom variant="h4">Welcome back</Typography>
                 </Box>
                 <Box sx={{display: 'flex', justifyContent: 'center'}}>
                     <form onSubmit={onSubmit}>
@@ -30,16 +38,6 @@ const SingUpForm = (props) => {
                             flexDirection: 'column',
                             width: '300px'
                         }}>
-                            <TextField
-                                fullWidth={true}
-                                label="Username"
-                                placeholder="Enter your username"
-                                margin="normal"
-                                variant="outlined"
-                                type="text"
-                                value={props.username}
-                                onChange={(e) => props.setUsername(e.target.value)}/>
-
                             <TextField
                                 fullWidth={true}
                                 label="Email"
@@ -59,25 +57,25 @@ const SingUpForm = (props) => {
                                 type="password"
                                 value={props.password}
                                 onChange={(e) => props.setPassword(e.target.value)}/>
-
                             <Button
                                 type={'submit'}
                                 variant="contained"
                                 sx={{margin: 2}}
                                 fullWidth={true}>
-                                Sing Up
+                                Login
                             </Button>
                         </Box>
                     </form>
                 </Box>
                 <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <LinkMUI component={RouterLink}
-                             to={'/login'}
-                             underline="hover"
-                             color="primary"
-                             variant='subtitle1'
-                             sx={{marginTop: 1}}>
-                        Already have an account?
+                    <LinkMUI
+                        component={RouterLink}
+                        to={'/register'}
+                        underline="hover"
+                        color="primary"
+                        variant='subtitle1'
+                        sx={{marginTop: 1}}>
+                        Need an account?
                     </LinkMUI>
                 </Box>
             </Card>
@@ -85,19 +83,17 @@ const SingUpForm = (props) => {
     );
 };
 
-
 const mapStateToProps = (state) => {
     return {
-        email: state.registration.email,
-        password: state.registration.password,
-        username: state.registration.username,
+        email: state.login.email,
+        password: state.login.password,
+        username: state.login.username,
     }
 }
 const mapDispatchToProps = {
     setEmail,
     setPassword,
-    setUsername,
-    registration,
+    login,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingUpForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

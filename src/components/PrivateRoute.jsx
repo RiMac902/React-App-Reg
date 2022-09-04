@@ -3,7 +3,8 @@ import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 
 const PrivateRoute = (props) => {
-    if (!props.access_token) {
+    console.log(props)
+    if (!props.token) {
         return <Navigate to={'/login'}/>
     }
 

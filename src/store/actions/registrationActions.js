@@ -41,6 +41,7 @@ export const registration = () => async (dispatch, getState) => {
             email: email,
             password: password,
             username: username,
+            role: 'ADMIN',
         })
         console.log('regThunk -->', data.data)
     } catch (e) {
