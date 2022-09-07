@@ -7,15 +7,11 @@ import LinkMUI from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = (props) => {
-
     const onSubmit = (e) => {
         e.preventDefault()
         props.login(navigateToProjects)
-
     }
-
     const navigate = useNavigate()
-
     const navigateToProjects = () => {
         navigate('/projects')
     }

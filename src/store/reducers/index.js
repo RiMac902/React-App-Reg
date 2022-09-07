@@ -5,6 +5,7 @@ import {tokensReducer} from "./tokensReducer";
 import {projectsReducer} from "./projectsReducer";
 import {persistReducer} from "redux-persist";
 import storage from 'redux-persist/lib/storage';
+import {tasksReducer} from "./tasksReducer";
 
 const persistConfig = {
     key: 'root',
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     login: loginReducer,
     token: tokensReducer,
     allProjects: projectsReducer,
+    tasks: tasksReducer
 })
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer)

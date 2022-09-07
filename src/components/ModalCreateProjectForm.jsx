@@ -3,7 +3,7 @@ import {Box, Button, Card, CardContent, Modal, styled, TextField, Typography} fr
 import {useDispatch} from "react-redux";
 import {createNewProject} from "../store/actions/projectsActions";
 
-const ModalForm = () => {
+const ModalCreateProjectForm = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -25,7 +25,7 @@ const ModalForm = () => {
 
     return (
         <>
-            <Button onClick={handleOpen} variant="outlined">Create Project</Button>
+            <Button onClick={handleOpen} variant="outlined" size="large" sx={{marginBottom: 2}}>Create Project</Button>
             <StyledModal open={open} onClose={handleClose}>
                 <Box>
                     <Card sx={{borderRadius: 5}}>
@@ -56,7 +56,6 @@ const ModalForm = () => {
                                     onChange={(e) => setDescription(e.target.value)}
 
                                 />
-
                                 <Button
                                     type={'submit'}
                                     variant="contained"
@@ -73,10 +72,10 @@ const ModalForm = () => {
     );
 };
 
-const StyledModal = styled(Modal)({
+export const StyledModal = styled(Modal)({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
 })
 
-export default ModalForm;
+export default ModalCreateProjectForm;

@@ -1,22 +1,25 @@
 import React, {useEffect} from 'react';
-import {Box} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import {connect} from "react-redux";
 import {fetchProjects} from "../store/actions/projectsActions";
-import ModalForm from "../components/ModalForm";
+import ModalCreateProjectForm from "../components/ModalCreateProjectForm";
 import Projects from "../components/Projects";
+import {logout} from "../store/actions/loginActions";
 
 
-const ProjectsPage = ({fetchProjects}) => {
-
+const ProjectsPage = ({fetchProjects, logout}) => {
     useEffect(() => {
         fetchProjects()
     }, [])
 
     return (
         <>
-            <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" flexDirection='column'>
-                <ModalForm/>
-                <Projects/>
+            <Box minHeight="10vh">
+                <Button onClick={() => {logout()}} variant="outlined" sx={{margin: 2}}>Logout</Button>
+                <Box display="flex" justifyContent="center" alignItems="center" minHeight="90vh" flexDirection='column'>
+                    <ModalCreateProjectForm/>
+                    <Projects/>
+                </Box>
             </Box>
         </>
     );
@@ -30,7 +33,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = {
     fetchProjects,
-
+    logout,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsPage);
