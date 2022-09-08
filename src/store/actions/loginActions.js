@@ -42,7 +42,7 @@ export const login = (navigateToProjects) => async (dispatch, getState) => {
     }
 }
 
-export const logout = () => async (dispatch, getState) => {
+export const logout = () => async (dispatch) => {
     try {
         dispatch(setAccessToken(null))
         dispatch(setRefreshToken(null))

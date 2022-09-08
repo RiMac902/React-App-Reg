@@ -1,9 +1,12 @@
 import React from 'react';
 import {Box, Button, ButtonGroup, Card, CardContent, Typography} from "@mui/material";
 import {connect} from "react-redux";
+import {deleteTask} from "../store/actions/tasksActions";
+import ModalEditTaskForm from "./ModalEditTaskForm";
+import UserListBtn from "./UserListBtn";
 
 
-const Tasks = ({tasks}) => {
+const Tasks = ({tasks, deleteTask}) => {
 
     return (
         <Box display={'flex'}>
@@ -12,21 +15,20 @@ const Tasks = ({tasks}) => {
                     <CardContent>
                         <Box display="flex" flexDirection='column'>
                             <Typography gutterBottom variant="h4">{task.title}</Typography>
-                            <Typography gutterBottom variant="h6" sx={{color: '#0d47a1'}}>Status: {task.status.title}</Typography>
-                            <Typography gutterBottom variant="body1" color={'text.secondary'}>{task.description}</Typography>
+                            <Typography gutterBottom variant="h6"
+                                        sx={{color: '#0288d1'}}>Status: {task.status.title}</Typography>
+                            <Typography gutterBottom variant="body1"
+                                        color={'text.secondary'}>{task.description}</Typography>
                             <Typography gutterBottom variant="h5">{task.type.title}</Typography>
-                            <ButtonGroup sx={{marginY: 3}}>
-                                <Button variant="outlined" color={'error'}>Delete</Button>
-                                <Button variant="outlined" color={'secondary'}>Edit</Button>
-                            </ButtonGroup>
-                            <ButtonGroup>
-                                <Button variant="outlined">Comments</Button>
-                            {/*  Will be modal comments  */}
-                            </ButtonGroup>
+                                <ButtonGroup sx={{marginY: 3}}>
+                                    <Button variant="outlined" color={'error'} onClick={() => deleteTask(task.id)}>Delete</Button>
+                                    <ModalEditTaskForm taskID={task.id} taskTitle={task.title} taskDescription={task.description}/>
+                                </ButtonGroup>
+                            <UserListBtn taskId={task.id} user={task.user}/>
                         </Box>
                     </CardContent>
                 </Card>
-           ))}
+            ))}
         </Box>
     );
 };
@@ -38,7 +40,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+    deleteTask,
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

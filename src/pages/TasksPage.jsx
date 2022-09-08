@@ -5,7 +5,7 @@ import {Box} from "@mui/material";
 import Tasks from "../components/Tasks";
 import ModalCommentsForm from "../components/ModalCreateTaskForm";
 
-const TasksPage = ({fetchTasks, tasks}) => {
+const TasksPage = ({fetchTasks}) => {
     useEffect(() => {
         fetchTasks()
     }, [])
@@ -13,8 +13,8 @@ const TasksPage = ({fetchTasks, tasks}) => {
         <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" flexDirection='column'>
             <ModalCommentsForm/>
             <Tasks/>
-            {/*    Comment / Tasks show btn => (det/edit/show comment) create tasks /  */}
-            {/*    Postman => title / description / status / type */}
+
+            {/* Loading => <CircularProgress /> and Redux  */}
         </Box>
     );
 };

@@ -5,6 +5,7 @@ import {deleteProject} from "../store/actions/projectsActions";
 import {setProjectId} from "../store/actions/tasksActions";
 import {useNavigate} from "react-router-dom";
 import ModalEditProjectForm from "./ModalEditProjectForm";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Projects = ({projects, deleteProject, setProjectId}) => {
     const navigate = useNavigate()
@@ -19,16 +20,23 @@ const Projects = ({projects, deleteProject, setProjectId}) => {
                 <Card key={project.id} variant='outlined' sx={{margin: 1, minWidth: 750, borderRadius: 5}}>
                     <Box sx={{margin: 3}}>
                         <Typography gutterBottom variant="h4">{project.title}</Typography>
-                        <Typography sx={{fontSize: 24}} gutterBottom variant="body1" color={'text.secondary'}>{project.description}</Typography>
-                        <Typography gutterBottom variant="subtitle1" color={'text.secondary'}>Tasks count: {project.task_count}</Typography>
-                        <Typography gutterBottom variant="subtitle1" color={'text.secondary'}>Users: {project.users.length}</Typography>
+                        <Typography sx={{fontSize: 24}} gutterBottom variant="body1"
+                                    color={'text.secondary'}>{project.description}</Typography>
+                        <Typography gutterBottom variant="subtitle1"
+                                    color={'text.secondary'}>Tasks: {project.task_count}</Typography>
+                        <Box display="flex" alignItems='stretch'>
+                            <AccountCircleIcon color={'primary'}/>
+                            <Typography variant="subtitle1" color={'text.secondary'}>{project.users.length}</Typography>
+                        </Box>
                         <Stack>
                             <ButtonGroup sx={{marginTop: 2}}>
-                                <Button variant="outlined" color={'error'} onClick={() => deleteProject(project.id)}>Delete</Button>
-                                <ModalEditProjectForm projectID={project.id}/>
+                                <Button variant="outlined" color={'error'}
+                                        onClick={() => deleteProject(project.id)}>Delete</Button>
+                                <ModalEditProjectForm projectID={project.id} projectTitle={projects.title} projectDescription={projects.description}/>
                                 <Button variant="contained" onClick={() => {
                                     setProjectId(project.id)
-                                    goToTasks()}}>Tasks</Button>
+                                    goToTasks()
+                                }}>Tasks</Button>
                             </ButtonGroup>
                         </Stack>
                     </Box>

@@ -1,42 +1,40 @@
 import React, {useState} from 'react';
 import {Box, Button, Card, CardContent, TextField, Typography} from "@mui/material";
 import {StyledModal} from "./ModalCreateProjectForm";
-import {editProject} from "../store/actions/projectsActions";
 import {useDispatch} from "react-redux";
+import {editTask} from "../store/actions/tasksActions";
 
 
-const ModalEditProjectForm = ({projectTitle, projectDescription, projectID}) => {
+const ModalEditTaskForm = ({taskID, taskDescription, taskTitle}) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [title, setTitle] = useState(projectTitle)
-    const [description, setDescription] = useState(projectDescription)
+    const [title, setTitle] = useState(taskTitle)
+    const [description, setDescription] = useState(taskDescription)
     const dispatch = useDispatch()
-    const onSubmit = (e) => {
-        e.preventDefault()
-        dispatch(editProject(projectID, title, description, onSuccess, onError))
-    }
     const onSuccess = () => {
         setOpen(false)
-        alert('Project successfully edited')
+        alert('Task updated')
     }
     const onError = () => {
-        alert('Project with title already exists')
+        alert('Task with title already exists')
     }
-
+    const onSubmit = (e) => {
+        e.preventDefault()
+        dispatch(editTask(taskID, title, description, onSuccess, onError))
+    }
 
     return (
         <>
-            <Button onClick={handleOpen} variant="outlined" color="secondary">Edit</Button>
+            <Button onClick={handleOpen} variant="outlined" color={'secondary'}>Edit Task</Button>
             <StyledModal open={open} onClose={handleClose}>
                 <Box>
                     <Card sx={{borderRadius: 5}}>
                         <CardContent>
-                            <Typography variant={'h6'} color={'gray'}>Edit Project</Typography>
+                            <Typography variant={'h6'} color={'gray'}>Create Task</Typography>
                             <form onSubmit={onSubmit}>
                                 <TextField
                                     fullWidth={true}
-                                    color="secondary"
                                     label="Title"
                                     placeholder="Write something ..."
                                     margin="normal"
@@ -47,7 +45,6 @@ const ModalEditProjectForm = ({projectTitle, projectDescription, projectID}) => 
                                 />
                                 <TextField
                                     fullWidth={true}
-                                    color="secondary"
                                     label="Description"
                                     placeholder="Describe something ..."
                                     margin="normal"
@@ -60,12 +57,9 @@ const ModalEditProjectForm = ({projectTitle, projectDescription, projectID}) => 
                                 <Button
                                     type={'submit'}
                                     variant="contained"
-                                    color="secondary"
                                     sx={{marginTop: 2}}
-                                    fullWidth={true}
-                                    onClick={() => editProject(projectID)}
-                                >
-                                    Edit Project
+                                    fullWidth={true}>
+                                    Edit Task
                                 </Button>
                             </form>
                         </CardContent>
@@ -76,8 +70,4 @@ const ModalEditProjectForm = ({projectTitle, projectDescription, projectID}) => 
     );
 };
 
-
-
-
-
-export default ModalEditProjectForm;
+export default ModalEditTaskForm;
