@@ -24,10 +24,6 @@ const Projects = ({projects, deleteProject, setProjectId}) => {
                                     color={'text.secondary'}>{project.description}</Typography>
                         <Typography gutterBottom variant="subtitle1"
                                     color={'text.secondary'}>Tasks: {project.task_count}</Typography>
-                        <Box display="flex" alignItems='stretch'>
-                            <AccountCircleIcon color={'primary'}/>
-                            <Typography variant="subtitle1" color={'text.secondary'}>{project.users.length}</Typography>
-                        </Box>
                         <Stack>
                             <ButtonGroup sx={{marginTop: 2}}>
                                 <Button variant="outlined" color={'error'}

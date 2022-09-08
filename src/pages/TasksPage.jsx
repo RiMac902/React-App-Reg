@@ -13,7 +13,6 @@ const TasksPage = ({fetchTasks}) => {
         <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" flexDirection='column'>
             <ModalCommentsForm/>
             <Tasks/>
-
             {/* Loading => <CircularProgress /> and Redux  */}
         </Box>
     );

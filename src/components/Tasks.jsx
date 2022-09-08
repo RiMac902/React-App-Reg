@@ -19,7 +19,6 @@ const Tasks = ({tasks, deleteTask}) => {
                                         sx={{color: '#0288d1'}}>Status: {task.status.title}</Typography>
                             <Typography gutterBottom variant="body1"
                                         color={'text.secondary'}>{task.description}</Typography>
-                            <Typography gutterBottom variant="h5">{task.type.title}</Typography>
                                 <ButtonGroup sx={{marginY: 3}}>
                                     <Button variant="outlined" color={'error'} onClick={() => deleteTask(task.id)}>Delete</Button>
                                     <ModalEditTaskForm taskID={task.id} taskTitle={task.title} taskDescription={task.description}/>
